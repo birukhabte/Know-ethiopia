@@ -533,3 +533,4 @@ const ResultItem = ({ item, isSelected, isDark, onSelect, onHover }) => {
 };
 
 export default GlobalSearch;
+
