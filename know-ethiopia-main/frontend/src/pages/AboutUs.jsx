@@ -18,14 +18,14 @@ const AboutUs = () => {
         {
             id: 1,
             name: "Biruk Habte",
-            role: "Data Engineer",
-            bio: "Passionate Data engineer with expertise in building scalable applications. Specializes in full stack development and Python applications.",
-            skills: ["Python", "React", "Terraform", "AWS"],
+            role: "Full-stack Developer",
+            bio: "Expertise in building scalable applications. Specializes in full stack development and Python applications.",
+            skills: ["Python", "React", "Next.js", "AWS"],
             social: {
-                linkedin: "https://www.linkedin.com/in/brajeshkrjha",
-                github: "https://github.com/brajeshkrjha",
-                email: "mailto:brajeshjha2001@gmail.com",
-                portfolio: "https://brajeshjha.vercel.app/",
+                linkedin: "https://www.linkedin.com/in/biruk-habte-ab9642295",
+                github: "https://github.com/birukhabte",
+                email: "mailto:biruk.habte-ug@aau.edu.et",
+                portfolio: "https://birukhabte.vercel.app/",
             },
         },
     ];
@@ -617,3 +617,4 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
