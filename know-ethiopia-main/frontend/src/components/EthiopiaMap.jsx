@@ -66,3 +66,4 @@ const EthiopiaMap = ({ onClick, size, mapColor, strokeColor, strokeWidth, classN
 export default EthiopiaMap;
 
 // chore: know-ethiopia backfill 1774943306
+
