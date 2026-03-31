@@ -1018,63 +1018,68 @@ app.use((err, req, res, next) => {
   });
 });
 
-// For local development
-if (!isProduction) {
+// Initialize database and start server
+const startServer = async () => {
   // In Supabase-only setups, there may be no MySQL database running.
   // Only attempt MySQL initialization if a DB host is configured.
   const hasMySqlConfig = !!process.env.DB_HOST;
 
-  if (hasMySqlConfig) {
+  if (hasMySqlConfig && !isProduction) {
     // Initialize database connection on startup (MySQL-backed features only)
-    (async () => {
-      try {
-        console.log('Initializing database connection on startup...');
-        await connectToDatabase();
-        console.log('Database initialized successfully!');
+    try {
+      console.log('Initializing database connection on startup...');
+      await connectToDatabase();
+      console.log('Database initialized successfully!');
 
-        // Initialize users table for auth
-        await initUsersTable();
-        
-        // Initialize posts table
-        await initPostsTable();
-        
-        // Initialize profile posts table
-        await initProfilePostsTable();
-        
-        // Initialize saved places table
-        await initSavedPlacesTable();
-        
-        // Initialize embedding service for vector search (async, non-blocking)
-        if (embeddingService) {
-          console.log('Starting embedding service initialization...');
-          embeddingService.initializeIndex()
-            .then(() => console.log('Embedding service ready for vector search!'))
-            .catch(err => console.error('Failed to initialize embedding service:', err.message));
-        } else {
-          console.log('Embedding service not available, skipping vector search initialization');
-        }
-      } catch (err) {
-        console.error('Failed to initialize database on startup:', err.message);
+      // Initialize users table for auth
+      await initUsersTable();
+      
+      // Initialize posts table
+      await initPostsTable();
+      
+      // Initialize profile posts table
+      await initProfilePostsTable();
+      
+      // Initialize saved places table
+      await initSavedPlacesTable();
+      
+      // Initialize embedding service for vector search (async, non-blocking)
+      if (embeddingService) {
+        console.log('Starting embedding service initialization...');
+        embeddingService.initializeIndex()
+          .then(() => console.log('Embedding service ready for vector search!'))
+          .catch(err => console.error('Failed to initialize embedding service:', err.message));
+      } else {
+        console.log('Embedding service not available, skipping vector search initialization');
       }
-    })();
+    } catch (err) {
+      console.error('Failed to initialize database on startup:', err.message);
+    }
   } else {
     console.log('MySQL configuration not found (DB_HOST not set); skipping MySQL startup initialization.');
 
     // Initialize embedding service even without MySQL, if available
-    if (embeddingService) {
+    if (embeddingService && !isProduction) {
       console.log('Starting embedding service initialization (no MySQL)...');
       embeddingService.initializeIndex()
         .then(() => console.log('Embedding service ready for vector search!'))
         .catch(err => console.error('Failed to initialize embedding service:', err.message));
     } else {
-      console.log('Embedding service not available, skipping vector search initialization');
+      console.log('Embedding service not available or in production, skipping vector search initialization');
     }
   }
 
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  // Start server (both development and production)
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Server is running on port ${port} in ${isProduction ? 'production' : 'development'} mode`);
   });
-}
+};
+
+// Start the server
+startServer().catch(err => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
+});
 
 // Export for Vercel serverless deployment
 module.exports = app; 
