@@ -37,6 +37,14 @@ const port = process.env.PORT || 5000;
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**
+ * SECURITY: Trust proxy for Render deployment
+ * Required for rate limiting to work correctly behind Render's proxy
+ */
+if (isProduction) {
+  app.set('trust proxy', 1);
+}
+
+/**
  * SECURITY: Validate required environment variables at startup
  */
 const requiredEnvVars = ['JWT_SECRET'];
@@ -120,14 +128,17 @@ const allowedOrigins = [
   'https://knowindia.aryankr.in',
   'https://knowindia.vercel.app',
   'https://know-india.vercel.app',
-  'https://know-india-final.vercel.app'
-  // TODO: Add your Know Ethiopia production URLs here
-  // 'https://your-app-name.vercel.app',
+  'https://know-india-final.vercel.app',
+  // Know Ethiopia production URLs
+  'https://know-ethiopia.vercel.app',
+  'https://know-ethiopia-git-main-your-username.vercel.app'
+  // Add your actual Vercel URL here when you get it
 ];
 
 // SECURITY: Pattern for Vercel preview deployments
 // Only allows specific project preview URLs, not arbitrary origins
 // DEPLOYMENT: Update this pattern to match your Vercel project name
+const vercelPreviewPattern = /^https:\/\/know-ethiopia-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/;
 const vercelPreviewPattern = /^https:\/\/know-india-final-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/;
 // Example for Know Ethiopia: /^https:\/\/know-ethiopia-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/
 
