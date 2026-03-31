@@ -112,17 +112,24 @@ app.use(generalLimiter);
 /**
  * SECURITY: Strict CORS configuration
  * Allows production domains and Vercel preview deployments
+ * 
+ * DEPLOYMENT: Add your production URLs here after deploying to Vercel
+ * Example: 'https://know-ethiopia.vercel.app'
  */
 const allowedOrigins = [
   'https://knowindia.aryankr.in',
   'https://knowindia.vercel.app',
   'https://know-india.vercel.app',
   'https://know-india-final.vercel.app'
+  // TODO: Add your Know Ethiopia production URLs here
+  // 'https://your-app-name.vercel.app',
 ];
 
 // SECURITY: Pattern for Vercel preview deployments
 // Only allows specific project preview URLs, not arbitrary origins
+// DEPLOYMENT: Update this pattern to match your Vercel project name
 const vercelPreviewPattern = /^https:\/\/know-india-final-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/;
+// Example for Know Ethiopia: /^https:\/\/know-ethiopia-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/
 
 if (!isProduction) {
   allowedOrigins.push('http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://localhost:5173');

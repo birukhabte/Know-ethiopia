@@ -125,6 +125,33 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Deployment
+
+Ready to deploy? We've got you covered with complete deployment guides:
+
+- **[Quick Start Deployment](QUICK_START_DEPLOYMENT.md)** — Step-by-step guide for deploying to Vercel (frontend) and Render (backend)
+- **[Deployment Checklist](DEPLOYMENT_CHECKLIST.md)** — Interactive checklist to track your deployment progress
+- **[Full Deployment Guide](DEPLOYMENT.md)** — Comprehensive documentation with troubleshooting and monitoring
+
+### Quick Deploy Commands
+
+```bash
+# Generate secure secrets for production
+node generate-secrets.js
+
+# Validate environment variables before deployment
+node validate-env.js
+```
+
+The app is configured to deploy:
+- **Frontend**: Vercel (optimized for React)
+- **Backend**: Render (Node.js with automatic HTTPS)
+- **Database**: Supabase (PostgreSQL with built-in auth)
+
+See [README_DEPLOYMENT.md](README_DEPLOYMENT.md) for an overview of all deployment files.
+
+---
+
 ## Project Structure
 
 ```

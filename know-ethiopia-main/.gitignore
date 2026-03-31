@@ -1,0 +1,38 @@
+# Deployment files should not be ignored - they're needed for deployment
+# But make sure sensitive data is never committed
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+.env.development
+
+# Keep example files
+!.env.example
+!.env.production.example
+!.env.local.example
+
+# Node modules
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+.cache/
