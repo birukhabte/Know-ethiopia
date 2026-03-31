@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EthiopiaMap from "../components/EthiopiaMap";
 import { motion, AnimatePresence } from "framer-motion";

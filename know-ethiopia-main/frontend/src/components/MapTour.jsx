@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Joyride from 'react-joyride';
 
 const MapTour = () => {

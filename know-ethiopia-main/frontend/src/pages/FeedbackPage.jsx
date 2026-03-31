@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Star, Send, CheckCircle, AlertCircle, Heart, Lightbulb, LogIn } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";

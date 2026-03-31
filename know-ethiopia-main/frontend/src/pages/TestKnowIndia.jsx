@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { states, uts } from '@aryanjsx/knowindia';
 
 const TestKnowIndia = () => {

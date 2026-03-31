@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Mail, Linkedin, Github, ChevronDown, Sparkles, Send, Clock, ArrowRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
